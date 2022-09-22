@@ -1,10 +1,13 @@
 import React, { useRef, useEffect } from "react";
+import { connect } from 'react-redux';
+
 import { arrayToChartObject } from '../utils/utils';
 import Card from './card';
 
-const Chart = ({ data }) => {
+const Chart = (props) => {
 	const [chart, setChart] = React.useState([]);
 	const dragItem = useRef();
+	const { data } = props;
 	
 	useEffect(() => {
 		if(data?.length) {
@@ -38,4 +41,9 @@ const Chart = ({ data }) => {
   );
 };
 
-export default Chart;
+const mapStateToProps = state => ({
+  init: state.init,
+  search: state.search
+})
+
+export default connect(mapStateToProps)(Chart);;

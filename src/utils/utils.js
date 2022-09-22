@@ -16,3 +16,17 @@ export const arrayToChartObject = (list) => {
   }
   return roots;
 }
+
+export const dataForListView = (list) => {
+  const response = {}
+
+  list.forEach((l) => {
+    if(l.team !== 'All')
+      if(response[l.team])
+        response[l.team].push(l.name)
+      else
+        response[l.team] = [ l.name ];
+  })
+
+  return response;
+}

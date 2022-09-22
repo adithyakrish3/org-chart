@@ -37,6 +37,13 @@
 body {
   font-family: "Sen", sans-serif;
   background: #f9f9fa;
+  text-align: center;
+  align-items: center;
+}
+
+.org-main {
+  text-align: center;
+  align-items: center;
 }
 
 .container {
@@ -196,4 +203,14 @@ body {
 .card .card-footer img {
   width: 25px;
   margin: 5px;
+}
+
+.child {
+  float: left;
+}
+
+.parent {
+  display: flex;
+  align-items: flex-start;
+  padding-top: 100px;
 }
