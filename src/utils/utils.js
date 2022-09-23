@@ -9,6 +9,7 @@ export const arrayToChartObject = (list) => {
   for (i = 0; i < list.length; i += 1) {
     node = list[i];
     if (node.parent !== null) {
+      node = { ...node, team: list[map[node.parent]].team !== 'All' ? list[map[node.parent]].team : node.team }
       list[map[node.parent]].children.push(node);
     } else {
       roots.push(node);

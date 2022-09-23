@@ -46,7 +46,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Body = (props) => {
 	const classes = useStyles();
-	const { init, search, dispatch } = props;
+	const { init, search, dispatch, alter } = props;
 
 	const [isSearching, setIsSearching] = useState(false)
 	const [ searchData, setSearchData ] = useState([])
@@ -54,11 +54,17 @@ const Body = (props) => {
 	//console.log(search)
 
 	useEffect(() => {
-		const newObj = dataForListView(data);
+		let newObj;
 
+		if(alter && alter.default)
+			newObj = dataForListView(data);
+		else {
+			newObj = dataForListView(alter);
+		}
+		
 		dispatch(setInitValue(newObj));
 		setObj(newObj)
-	}, [])
+	}, [alter])
 
 	useEffect(() => {
 	    if(!init.default && searchData.length === 0 && Object.keys(obj).length > 0) {
@@ -122,7 +128,8 @@ const Body = (props) => {
 
 const mapStateToProps = state => ({
   init: state.init,
-  search: state.search
+  search: state.search,
+  alter: state.alter
 })
 
 export default connect(mapStateToProps)(Body);

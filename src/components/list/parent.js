@@ -33,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
 
 const Parent = (props) => {
 	const classes = useStyles();
-	const { name, data, selection, disableCheck } = props;
+	const { name, data, selection, disableCheck, alter } = props;
 
 	const [selected, setSelected] = useState([])
 	const [parentSelection, setParentSelection] = useState(false)
@@ -68,7 +68,7 @@ const Parent = (props) => {
 			<span className={classes.collapse} onClick={onToogle}>{isExpanded ? <CaretUpOutlined /> : <CaretDownOutlined />}</span>
 			<input
 				type="checkbox"
-				disabled={disableCheck}
+				disabled={disableCheck || !alter.default}
 				onChange={onChange}
 				className={classes.check}
 				checked={selection === name}
@@ -91,7 +91,8 @@ const Parent = (props) => {
 const mapStateToProps = state => ({
   init: state.init,
   search: state.search,
-  selection: state.selection
+  selection: state.selection,
+  alter: state.alter
 })
 
 export default connect(mapStateToProps)(Parent);
