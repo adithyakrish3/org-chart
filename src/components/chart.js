@@ -21,6 +21,9 @@ const Chart = (props) => {
 	}
 
 	const alterData = (parent) => {
+		if(parent === dragItem.current)
+			return
+		
 		let newChart = [ ...chart];
 		const parentObj = newChart.find(n => n.id === parent);
 
