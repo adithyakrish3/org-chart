@@ -114,7 +114,7 @@ const Body = (props) => {
 				})}
 				{isSearching && <div>
 					{JSON.stringify(search) !== JSON.stringify({}) && Object.keys(search).map((key) => {
-						return <Parent key={key} name={key} data={search[key]} disableCheck={true} />
+						return <Parent key={key} name={key} data={search[key]} disableCheck={false} expandMenu={true}/>
 					})}
 					{JSON.stringify(search) === JSON.stringify({}) && <div className={classes.noResults}>
 						<span>No results found!</span>

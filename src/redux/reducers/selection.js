@@ -5,6 +5,6 @@ export default (state = defaultProperty, action) => {
     case "SET_TEAM":
       return action.payload;
     default:
-      return defaultProperty;
+      return state;
   }
 };

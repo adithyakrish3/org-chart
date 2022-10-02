@@ -5,6 +5,6 @@ export default (state = defaultProperty, action) => {
     case "SET_SEARCH":
       return { ...action.payload }
     default:
-      return defaultProperty;
+      return state;
   }
 };

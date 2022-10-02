@@ -5,6 +5,6 @@ export default (state = defaultProperty, action) => {
     case "SET_ALTER":
       return action.payload
     default:
-      return defaultProperty;
+      return state;
   }
 };

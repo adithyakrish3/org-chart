@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 
 import Child from './child';
@@ -33,17 +33,20 @@ const useStyles = makeStyles((theme) => ({
 
 const Parent = (props) => {
 	const classes = useStyles();
-	const { name, data, selection, disableCheck, alter } = props;
+	const { name, data, selection, disableCheck, alter, expandMenu } = props;
 
 	const [selected, setSelected] = useState([])
 	const [parentSelection, setParentSelection] = useState(false)
 	const [isExpanded, setExpanded] = useState(false)
 
+	useEffect(() => {
+		setExpanded(expandMenu)
+	}, [expandMenu])
+
 	const onChange= () => {
 		if(!disableCheck) {
 			if(parentSelection) {
 				setSelected([])
-				setExpanded(false)
 				setParentSelection(false)
 				props.dispatch(setTeamSelected({default: true}))
 			}
@@ -54,7 +57,6 @@ const Parent = (props) => {
 				props.dispatch(setTeamSelected(name))
 				setSelected(temp)
 				setParentSelection(true)
-				setExpanded(true)
 			}
 		}
 	}
@@ -79,7 +81,7 @@ const Parent = (props) => {
 			    }}
 			/>
 			<span className={classes.header}>{name}</span>
-			{(parentSelection || isExpanded) && <div className="children">
+			{(parentSelection || isExpanded) && data.length > 0 && <div className="children">
 				{data.map((d, index) => (
 					<Child name={d} key={index} />
 				))}
