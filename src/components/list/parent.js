@@ -70,7 +70,7 @@ const Parent = (props) => {
 			<span className={classes.collapse} onClick={onToogle}>{isExpanded ? <CaretUpOutlined /> : <CaretDownOutlined />}</span>
 			<input
 				type="checkbox"
-				disabled={disableCheck || !alter.default}
+				disabled={disableCheck || alter.default}
 				onChange={onChange}
 				className={classes.check}
 				checked={selection === name}
